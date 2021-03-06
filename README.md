@@ -1,2 +1,8 @@
 # Spark_Streaming-Algorithm_Implementations
 A limitless Spark Streaming worldwide top-10 hashtags implementation, as well as an Exponentially Decaying Window algorithm of such top-10 hashtags.
+
+In the first of the 2 existing implementations in this project, we use Spark Streaming and its enhanced RDD Transformations to gather all existing hashtags in tweets that are being sent worldwide each 5 seconds (micro-batch size) and rank the most common hashtags in a top-10 ranking (the 'trending-topic' hashtags). Therefore, we are keeping in memory a structure of all frequency of appearance of all hashtags from all tweets received since the program is launched, so that we are able to know the most common hashtags overall.
+
+However, since the previous approach is assuming 'limitless' memory, it is not feasible for that program to be working for so long. Therefore, we implement an Exponentially Decaying Window algorithm in order to 'penalize' old hashtags from tweets over new ones that are currently received more frequently, thereby erasing from Main Memory the ones that reach a certain threshold value (0.5, in this implementation). Consequently, our current top-10 hashtags actually represents the top-10, trending-topic hashtags worldwide, being able to get rid of those hashtags that are not 'trending topic' anymore.
+
+To summarize, all together becomes an interesting implementation of in-memory structures when dealing with stream data by means of the Spark Streaming framework, so that we are able to keep track of certain statistics and data that are representative of the entire stream of data we have received so far, without the need of having to store all data to draw the same conclusions.
